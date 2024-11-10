@@ -65,7 +65,7 @@ Js
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/chestvision-ai.git
+    git clone https://github.com/2006coder/ChestVision_AI_HackPrinceton2024.git
     ```
 2. Open **index.html** in your browser or set up a local server:
     ```bash
