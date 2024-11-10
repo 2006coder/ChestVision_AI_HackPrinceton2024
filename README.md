@@ -46,8 +46,8 @@ Visit our website at [**chestvision.us**](https://chestvision.us) to learn more 
 ### Dataset
 
 - **Training**: 78,468 images from ChestX-ray14 Dataset
-- **Validation**: 11,218 images
-- **Testing**: 22,432 images
+- **Validation**: 11,218 images from ChestX-ray14 Dataset
+- **Testing**: 22,432 images from ChestX-ray14 Dataset
 
 ### Supported Conditions
 
