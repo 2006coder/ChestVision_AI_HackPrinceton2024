@@ -190,5 +190,5 @@ Copyright © 2024 **ChestVision AI**. All rights reserved.
 ---
 
 <div align="center">
-  Made with ❤️ at Earlham College
+  Made with ❤️
 </div>
