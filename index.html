@@ -1,0 +1,296 @@
+<!--Earlham College team-->
+<!--Bach, Samadhi, Sora-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChestVision AI - AdvancedX-Ray Analysis</title>
+    
+    <!--Core Libraries for the model :))-->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0"></script>
+    
+    <!-- Animation libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="loading">
+    <!-- Floating Navigation -->
+    <nav class="floating-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fas fa-lungs-virus"></i>
+                <span>ChestVision AI</span>
+            </div>
+            <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <span class="nav-link" onclick="scrollToSection('#analysis')">Analysis</span>
+                <span class="nav-link" onclick="scrollToSection('#features')">Features</span>
+                <span class="nav-link" onclick="scrollToSection('#technologies')">Technologies</span>
+                <span class="nav-link highlight" onclick="toggleLoginModal(true)">Login</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <div class="hero-animation" data-aos="zoom-in">
+                <img src="hero-gifer.gif" alt="AI Analysis Animation">
+            </div>
+            <h1 class="hero-title">ChestVision AI</h1>
+            <h2 class="hero-subtitle">Chest X-Ray Analysis</h2>
+            <p class="hero-description">Empowering medical professionals with state-of-the-art AI assistance for rapid and accurate chest X-ray interpretation</p>
+            <button class="get-started-btn" onclick="scrollToAnalysis()">
+                Get Started
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Wrap disclaimer and analysis section in demo-section -->
+        <section class="demo-section">
+            <!-- Disclaimer -->
+            <div class="floating-disclaimer" data-aos="fade-up">
+                <i class="fas fa-shield-alt"></i>
+                <div class="disclaimer-content">
+                    <h3>Disclaimer</h3>
+                    <p>This AI-assisted diagnostic tool is designed to supplement, not replace, professional medical judgment.</p>
+                </div>
+            </div>
+
+            <!-- Analysis Section -->
+            <section id="analysis" class="analysis-section">
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h2>Upload X-ray Image</h2>
+                            <p>Supported formats: DICOM, JPG, PNG</p>
+                        </div>
+                        <div class="card-body">
+                            <!-- Update the model selector -->
+                            <div class="model-selector">
+                                <label for="model-select">Select Model:</label>
+                                <select id="model-select" class="model-select">
+                                    <option value="">Choose a model...</option>
+                                    <option value="multi">Multi-Disease Model (14 diseases)</option>
+                                    <option value="single">Pneumonia Detection Model</option>
+                                </select>
+                            </div>
+                            <div class="upload-box" id="upload-box">
+                                <i class="fas fa-image"></i>
+                                <p>Drag & drop your X-ray image or click to upload</p>
+                                <input type="file" id="file-input" accept="image/*" hidden>
+                            </div>
+                            <button id="analyze-btn" class="analyze-btn" disabled>
+                                <i class="fas fa-microscope"></i>
+                                <span>Analyze Image</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="results-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar"></i>
+                            <h2>Analysis Results</h2>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="preview-canvas" class="preview-canvas"></canvas>
+                            <div id="results-list" class="results-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <h2 class="section-title" data-aos="fade-up">Our Features</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="gradient-text">Fast</h3>
+                    <p>Instant analysis results</p>
+                    <span class="feature-stat">< 2 seconds processing</span>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="gradient-text">Free & Private</h3>
+                    <p>No hidden costs or data sharing</p>
+                    <span class="feature-stat">100% Secure</span>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <h3 class="gradient-text">Easy to Use</h3>
+                    <p>Simple drag & drop interface</p>
+                    <span class="feature-stat">No training required</span>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="gradient-text">AI Analysis</h3>
+                    <p>Powered by our advanced ResNet model (55 layers)</p>
+                    <span class="feature-stat">77.64% AUROC (~Accuracy)</span>
+                    <span class="feature-stat">All categories >65%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technologies Section -->
+        <section id="technologies" class="features-section">
+            <h2 class="section-title" data-aos="fade-up">Technologies</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="gradient-text">Model Accuracy</h3>
+                    <p>AUROC Score</p>
+                    <span class="feature-stat">Multi-Disease: 77.64%</span>
+                    <span class="feature-stat">Pneumonia: 85.2%</span>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="gradient-text">Training Data</h3>
+                    <p>ChestX-ray14 Dataset</p>
+                    <span class="feature-stat">78,468 Images</span>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="gradient-text">Validation Data</h3>
+                    <p>ChestX-ray14 Dataset</p>
+                    <span class="feature-stat">11,218 Images</span>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3 class="gradient-text">Testing Data</h3>
+                    <p>ChestX-ray14 Dataset</p>
+                    <span class="feature-stat">22,432 Images</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Replace the existing footer with this new version -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <i class="fas fa-lungs-virus"></i>
+                    <span>ChestVision AI</span>
+                </div>
+                <p class="footer-description">
+                    Advancing healthcare through AI-powered chest X-ray analysis
+                </p>
+            </div>
+            
+            <div class="authors">
+                <h3>Meet Our Team</h3>
+                <div class="authors-grid">
+                    <div class="author-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h4>Bach</h4>
+                        <p class="author-role">ML Engineer</p>
+                        <a href="https://github.com/2006coder" target="_blank" class="github-link">
+                            GitHub
+                        </a>
+                    </div>
+                    
+                    <div class="author-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h4>Samadhi</h4>
+                        <p class="author-role">Web Developer</p>
+                        <a href="https://github.com/samadhichandrasena" target="_blank" class="github-link">
+                            GitHub
+                        </a>
+                    </div>
+                    
+                    <div class="author-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h4>Sora</h4>
+                        <p class="author-role">ML Engineer</p>
+                        <a href="https://github.com/sowada23" target="_blank" class="github-link">
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© 2024 ChestVision AI. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loader"></div>
+        <p id="loading-text">Initializing AI Model...</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="animations.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Add this right after the opening body tag -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="login-modal">
+            <button class="close-modal" onclick="toggleLoginModal(false)">&times;</button>
+            <h2>Login</h2>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
